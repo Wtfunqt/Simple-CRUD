@@ -38,7 +38,6 @@ public class Main {
 		if (args[0].equalsIgnoreCase("-c") && args.length <= 4) {
 			int a = 1;
 			String name = "";
-			
 			for (int i = 1; i < args.length; i++) {
 				if (args[i].equalsIgnoreCase("m") || args[i].equalsIgnoreCase("f")) {
 					a = i;
@@ -53,6 +52,31 @@ public class Main {
 			
 			if (args[a].equalsIgnoreCase("m")) allPeople.add(Person.createMale(name, result));
 			else if (args[a].equalsIgnoreCase("f")) allPeople.add(Person.createFemale(name, result));
+		}
+		
+		else if (args[0].equalsIgnoreCase("-u") && args.length <= 5) {
+			Person person1 = allPeople.get(Integer.parseInt(args[1]) - 1);
+			
+			String name = "";
+			for (int i = 2; i < args.length; i++) {
+				if (args[i].equalsIgnoreCase("m") || args[i].equalsIgnoreCase("f")) {
+					break;
+				}
+				name = (name.isEmpty()) ? args[i] : name + " " + args[i];
+			}
+			person1.setName(name);
+			
+			person1.setSex(args[3] == "m" ? Sex.MALE : Sex.FEMALE);
+			
+			SimpleDateFormat inputFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
+			person1.sexBirthDay(inputFormat.parse(args[4]));
+			
+			SimpleDateFormat outputFormat = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+			for (Person person : allPeople) {
+				System.out.println(person.getName() + " "
+						+ (person.getSex() == Sex.MALE ? "Male" : "Female") + " " 
+						+ outputFormat.format(person.getBirthDay()));
+			}
 		}
 		
 		else if (args[0].equalsIgnoreCase("-d") && args.length == 2) {
