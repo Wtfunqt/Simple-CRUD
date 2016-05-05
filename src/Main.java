@@ -1,4 +1,3 @@
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,12 +30,11 @@ Example of parameters: -c Gotov m 07/03/1992
 public class Main {
 	public static List<Person> allPeople = new ArrayList<Person>();
 	static {
-		allPeople.add(Person.createFemale("Emma", new Date()));
-		allPeople.add(Person.createMale("Vladimir", new Date()));
+		allPeople.add(Person.createFemale("Emma Watson", new Date()));
+		allPeople.add(Person.createMale("Vladimir Rozin", new Date()));
 	}
 	
 	public static void main(String[] args) throws ParseException {
-		String date;
 		if (args[0].equalsIgnoreCase("-c")) {
 			int a = 1;
 			String name = "";
@@ -48,9 +46,10 @@ public class Main {
 				}
 				name = (name.isEmpty()) ? args[i] : name + " " + args[i];
 			}
-			date = args[a+1];
-			DateFormat df = new SimpleDateFormat(date, Locale.ENGLISH);
-			Date result = df.parse(date);
+			
+			String date = args[a+1];
+			SimpleDateFormat inputFormat = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
+			Date result = inputFormat.parse(date);
 			
 			if (args[a].equalsIgnoreCase("m")) allPeople.add(Person.createMale(name, result));
 			else if (args[a].equalsIgnoreCase("f")) allPeople.add(Person.createFemale(name, result));
