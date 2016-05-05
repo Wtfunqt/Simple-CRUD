@@ -54,6 +54,13 @@ public class Main {
 			if (args[a].equalsIgnoreCase("m")) allPeople.add(Person.createMale(name, result));
 			else if (args[a].equalsIgnoreCase("f")) allPeople.add(Person.createFemale(name, result));
 		}
+		else if (args[0].equalsIgnoreCase("-i") && args.length == 2) {
+			SimpleDateFormat outputFormat = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+			Person person = allPeople.get(Integer.parseInt(args[1]) - 1);
+			System.out.println(person.getName() + " "
+					+ (person.getSex() == Sex.MALE ? "Male" : "Female") + " " 
+					+ outputFormat.format(person.getBirthDay()));		
+		}
 	}
 	
 }
