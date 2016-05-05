@@ -35,7 +35,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws ParseException {
-		if (args[0].equalsIgnoreCase("-c")) {
+		if (args[0].equalsIgnoreCase("-c") && args.length <= 4) {
 			int a = 1;
 			String name = "";
 			
@@ -54,6 +54,11 @@ public class Main {
 			if (args[a].equalsIgnoreCase("m")) allPeople.add(Person.createMale(name, result));
 			else if (args[a].equalsIgnoreCase("f")) allPeople.add(Person.createFemale(name, result));
 		}
+		
+		else if (args[0].equalsIgnoreCase("-d") && args.length == 2) {
+			allPeople.remove(Integer.parseInt(args[1]) - 1);
+		}
+		
 		else if (args[0].equalsIgnoreCase("-i") && args.length == 2) {
 			SimpleDateFormat outputFormat = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
 			Person person = allPeople.get(Integer.parseInt(args[1]) - 1);
