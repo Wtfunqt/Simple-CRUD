@@ -1,5 +1,9 @@
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Date;
 
 /* CRUD - Create, Update, Delete
@@ -31,8 +35,26 @@ public class Main {
 		allPeople.add(Person.createMale("Vladimir", new Date()));
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws ParseException {
+		String date;
+		if (args[0].equalsIgnoreCase("-c")) {
+			int a = 1;
+			String name = "";
+			
+			for (int i = 1; i < args.length; i++) {
+				if (args[i].equalsIgnoreCase("m") || args[i].equalsIgnoreCase("f")) {
+					a = i;
+					break;
+				}
+				name = (name.isEmpty()) ? args[i] : name + " " + args[i];
+			}
+			date = args[a+1];
+			DateFormat df = new SimpleDateFormat(date, Locale.ENGLISH);
+			Date result = df.parse(date);
+			
+			if (args[a].equalsIgnoreCase("m")) allPeople.add(Person.createMale(name, result));
+			else if (args[a].equalsIgnoreCase("f")) allPeople.add(Person.createFemale(name, result));
+		}
 	}
 	
 }
