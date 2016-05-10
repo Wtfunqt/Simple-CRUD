@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Date;
 
-/* CRUD - Create, Update, Delete
+/* CRUD - Multiple Create, Update, Delete
 This application should run with one of the following parameters:
--c name sex birthday
--u id name sex birthday
--d id
--i id
+-c name1 sex1 birthday1 name2 sex2 birdthday2 ...
+-u id1 name1 sex1 birthday1 id2 name2 sex2 birthday2 ...
+-d id1 id2 id3 ...
+-i id1 id2 id3 ...
 
 Parameters:
 name - String
@@ -44,7 +44,8 @@ public class Main {
 					a = i;
 					break;
 				}
-				name = (name.isEmpty()) ? args[i] : name + " " + args[i];
+				else 
+					name = (name.isEmpty()) ? args[i] : name + " " + args[i];
 			}
 			
 			String date = args[a+1];
