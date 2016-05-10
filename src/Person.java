@@ -27,7 +27,7 @@ public class Person {
 		this.sex = sex;
 	}
 	
-	public void sexBirthDay(Date birthDay) {
+	public void setBirthDay(Date birthDay) {
 		this.birthDay = birthDay;
 	}
 	
